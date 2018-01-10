@@ -42,7 +42,7 @@ pipeline {
           //}
         }
         sh "docker run -i --rm -v \$(pwd)/dist:/usr/src/app/dist geographica/manhattan_3d ng build --environment=prod -op dist/dist"
-        sh "cp deploy/${DEPLOY_TO}.staging.yml s3_website.yml"
+        sh "cp deploy/s3_website.${DEPLOY_TO}.yml s3_website.yml"
         sh "docker run --rm -i -v \$(pwd):/usr/src/app -e \"S3_WEBSITE_ID=${CRED_USR}\" -e \"S3_WEBSITE_SECRET=${CRED_PSW}\" geographica/s3_website cfg apply"
         sh "docker run --rm -i -v \$(pwd):/usr/src/app -e \"S3_WEBSITE_ID=${CRED_USR}\" -e \"S3_WEBSITE_SECRET=${CRED_PSW}\" geographica/s3_website push"
       }
