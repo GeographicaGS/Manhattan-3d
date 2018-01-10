@@ -21,7 +21,7 @@ pipeline {
 
     stage('Linter') {
       steps {
-        sh "docker run -i --rm geographica/manhattan_3d npm run-script lint
+        sh "docker run -i --rm geographica/manhattan_3d npm run-script lint"
       }
     }
 
