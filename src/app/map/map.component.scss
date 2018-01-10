@@ -1,7 +1,14 @@
 :host{
   flex: 0 0 100%;
   display: flex;
+  position: relative;
   .map {
     width: 100%;
+  }
+  app-selector {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
   }
 }

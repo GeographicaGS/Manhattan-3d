@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as mapstyle from '../../assets/mapstyle/style.json';
-import { DataService } from '../data.service';
 
 declare const cartodb: any;
 
@@ -14,10 +13,24 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   @ViewChild('mapContainer') mapContainer;
   map: any;
+  config = {
+    year_built: {
+      property: 'yearbuilt',
+      stops: [[1940, '#E5E4C7'] , [1960, '#C9DAC1'] , [1980, '#AED0BA'] , [2000, '#92C6B3'] , [2020, '#76BCAD']]
+    },
+    assesed_value: {
+      property: 'assesstot',
+      stops: [
+        [3285000.000, '#8297BB'],
+        [13497300.000, '#959DA3'],
+        [41744250.000, '#A8A28B'],
+        [123781050.000, '#BBA873'],
+        [3401719200.000, '#CEAD5B']
+      ]
+    }
+  };
 
-  constructor(
-    private dataService: DataService
-  ) { }
+  constructor() { }
 
   ngOnInit() {}
 
@@ -42,14 +55,10 @@ export class MapComponent implements OnInit, AfterViewInit {
     });
 
     this.map.on('load', () => {
-      // this.dataService.getBuilds().subscribe(data => {
-      //   debugger;
-      // });
-
       const layerData = {
       user_name: 'cayetano',
       sublayers: [{
-        sql: `SELECT the_geom_webmercator,cartodb_id,numfloors * 4 as height,yearbuilt, address
+        sql: `SELECT the_geom_webmercator,cartodb_id,numfloors * 4 as height,yearbuilt, address, assesstot
         FROM cayetano.mnmappluto where not landuse IN ('09','07')`,
         cartocss: '{}'
       }],
@@ -67,7 +76,6 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.map.addSource('buildings_source', { type: 'vector', tiles: tiles });
       this.map.addLayer({
         id: 'buildings',
-        // type: 'line',
         'type': 'fill-extrusion',
         'source': 'buildings_source',
         'source-layer': 'layer0',
@@ -76,20 +84,20 @@ export class MapComponent implements OnInit, AfterViewInit {
             'property': 'height',
             'type': 'identity'
           },
-          // 'fill-extrusion-color': 'navajowhite',
-          'fill-extrusion-color': {
-            'property': 'yearbuilt',
-            'type': 'exponential',
-            'stops': [
-              [1940, '#ffffcc'] , [1960, '#c2e699'] , [1980, '#78c679'] , [2000, '#31a354'] , [2020, '#006837']
-            ]
-          },
-           'fill-extrusion-opacity': 0.5
+          'fill-extrusion-opacity': 0.85
         }
       });
-
+      this.setLayerPaintProperties('year_built');
     });
 
+    });
+  }
+
+  setLayerPaintProperties(selector) {
+    this.map.setPaintProperty('buildings', 'fill-extrusion-color', {
+      'property': this.config[selector].property,
+      'type': 'exponential',
+      'stops': this.config[selector].stops
     });
   }
 

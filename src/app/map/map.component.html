@@ -1,1 +1,8 @@
+<app-selector
+[values]="[
+  {'value':'year_built', 'title':'Year built'},
+  {'value':'assesed_value', 'title':'Assesed value'}
+]"
+(onSelected)="setLayerPaintProperties($event)"
+></app-selector>
 <div class="map" #mapContainer></div>
