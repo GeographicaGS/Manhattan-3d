@@ -58,8 +58,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       const layerData = {
       user_name: 'cayetano',
       sublayers: [{
-        sql: `SELECT the_geom_webmercator,cartodb_id,numfloors * 4 as height,yearbuilt, assesstot
-        FROM cayetano.mnmappluto where not landuse IN ('09','07')`,
+        sql: `SELECT the_geom_webmercator,cartodb_id,numfloors * 4 as height,yearbuilt
+        FROM cayetano.mnmappluto_red`,
         cartocss: '{}'
       }],
       maps_api_template: 'https://cayetano.carto.com' // Optional

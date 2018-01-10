@@ -1,7 +1,5 @@
-<!--
+<div class="title">Thematic layer</div>
+<div class="selected">{{selected}}</div>
 <ul>
-  <li *ngFor="let v of values" (click)="select(v.value)">{{v.title}}</li>
-</ul> -->
-<select (change)="select($event.target.value)">
-  <option *ngFor="let v of values" value="{{v.value}}">{{v.title}}</option>
-</select>
+  <li *ngFor="let v of _values" (click)="select(v)">{{v.title}}</li>
+</ul>

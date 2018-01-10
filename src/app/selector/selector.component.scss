@@ -1,0 +1,20 @@
+:host{
+  >div{
+    display: inline-block;
+    padding: 6px 12px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
+    font-size: 12px;
+  }
+  .title{
+    border-radius: 4px 0 0 4px;
+    background-color: #0066CC;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
+    font-size: 12px;
+    color: #86B9EB;
+  }
+  .selected{
+    border-radius: 0 4px 4px 0;
+    background-color: #FFFFFF;
+    color: #383D4C;
+  }
+}
