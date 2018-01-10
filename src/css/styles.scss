@@ -1,0 +1,9 @@
+@import '~mapbox-gl/dist/mapbox-gl.css';
+@import './reset.scss';
+
+body {
+  overflow: hidden;
+  max-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
