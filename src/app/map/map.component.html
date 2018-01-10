@@ -1,8 +1,18 @@
 <app-selector
 [values]="[
-  {'value':'year_built', 'title':'Year built'},
-  {'value':'assesed_value', 'title':'Assesed value'}
+  {'value':'year_built', 'title': config['year_built'].title},
+  {'value':'assesed_value', 'title':config['assesed_value'].title}
 ]"
 (onSelected)="setLayerPaintProperties($event)"
 ></app-selector>
 <div class="map" #mapContainer></div>
+
+<div class="legend">
+  <h3>{{currentConfig.title}}</h3>
+  <ul>
+    <li *ngFor="let c of currentConfig.stops">
+      <div [ngStyle]="{'background-color': c[1]}"></div>
+      {{c[0] | number}}
+    </li>
+  </ul>
+</div>

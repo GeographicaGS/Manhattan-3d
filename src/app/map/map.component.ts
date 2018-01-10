@@ -15,20 +15,24 @@ export class MapComponent implements OnInit, AfterViewInit {
   map: any;
   config = {
     year_built: {
+      title: 'Year built',
       property: 'yearbuilt',
       stops: [[1940, '#E5E4C7'] , [1960, '#C9DAC1'] , [1980, '#AED0BA'] , [2000, '#92C6B3'] , [2020, '#76BCAD']]
     },
     assesed_value: {
+      title: 'Assesed value',
       property: 'assesstot',
       stops: [
-        [3285000.000, '#8297BB'],
-        [13497300.000, '#959DA3'],
-        [41744250.000, '#A8A28B'],
-        [123781050.000, '#BBA873'],
-        [3401719200.000, '#CEAD5B']
+        [3285000, '#8297BB'],
+        [13497300, '#959DA3'],
+        [41744250, '#A8A28B'],
+        [123781050, '#BBA873'],
+        [3401719200, '#CEAD5B']
       ]
     }
   };
+
+  currentConfig = this.config['year_built'];
 
   constructor() { }
 
@@ -54,12 +58,14 @@ export class MapComponent implements OnInit, AfterViewInit {
         pitch: 60
     });
 
+    this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
     this.map.on('load', () => {
       const layerData = {
       user_name: 'cayetano',
       sublayers: [{
-        sql: `SELECT the_geom_webmercator,cartodb_id,numfloors * 4 as height,yearbuilt
-        FROM cayetano.mnmappluto_red`,
+        sql: `SELECT the_geom_webmercator,cartodb_id,numfloors * 4 as height,yearbuilt, assesstot
+        FROM cayetano.mnmappluto_red2`,
         cartocss: '{}'
       }],
       maps_api_template: 'https://cayetano.carto.com' // Optional
@@ -94,6 +100,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   setLayerPaintProperties(selector) {
+    this.currentConfig = this.config[selector];
     this.map.setPaintProperty('buildings', 'fill-extrusion-color', {
       'property': this.config[selector].property,
       'type': 'exponential',

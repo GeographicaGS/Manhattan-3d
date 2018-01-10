@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i');
 @import '~mapbox-gl/dist/mapbox-gl.css';
 @import './reset.scss';
 
@@ -6,4 +7,10 @@ body {
   max-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+
+  .mapboxgl-ctrl-top-right{
+    top:10px;
+    right: 10px;
+  }
 }

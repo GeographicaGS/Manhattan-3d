@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SelectorComponent implements OnInit {
 
   selected: string;
+  showList = false;
   @Output() onSelected = new EventEmitter<string>();
   private _values = [];
   @Input() set values(values) {
@@ -23,8 +24,13 @@ export class SelectorComponent implements OnInit {
   }
 
   select(elem) {
+    this.showList = false;
     this.selected = elem.title;
     this.onSelected.emit(elem.value);
+  }
+
+  toggleList() {
+    this.showList = !this.showList;
   }
 
 }

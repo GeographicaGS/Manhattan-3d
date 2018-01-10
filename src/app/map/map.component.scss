@@ -11,4 +11,38 @@
     left: 20px;
     z-index: 1;
   }
+  .legend{
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+    width: 152px;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
+    font-size: 12px;
+    color: #383D4C;
+    padding: 16px 0;
+    h3{
+      font-weight: bold;
+      line-height: 12px;
+      font-size: 12px;
+      margin-left: 16px;
+      margin-bottom: 14px;
+    }
+    ul{
+      margin: 0 16px;
+      li{
+        display: flex;
+        align-items: center;
+        &+li{
+          margin-top: 10px;
+        }
+        >div{
+          height: 12px;
+          width: 12px;
+          margin-right: 6px;
+        }
+      }
+    }
+  }
 }
