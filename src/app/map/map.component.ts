@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as positronMapstyle from '../../assets/mapstyle/positron/style.json';
 import * as darkmatterMapstyle from '../../assets/mapstyle/darkmatter/style.json';
+import { formatNumber } from '../utils';
 
 declare const cartodb: any;
 
@@ -150,7 +151,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         document.getElementsByClassName('marker')[0].innerHTML = `
           <div>
             <h3>${e.features[0].properties.address}</h3>
-            <h4 style="color:${color};">${property}</h4>
+            <h4 style="color:${color};">${formatNumber(property)}</h4>
           </div>
         `;
       });
