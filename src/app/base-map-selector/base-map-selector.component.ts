@@ -8,7 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class BaseMapSelectorComponent implements OnInit {
 
   invert = true;
-  rotation = 0;
+  rotation = -180;
 
   @Output() onChange = new EventEmitter<string>();
 
