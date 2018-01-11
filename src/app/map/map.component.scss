@@ -71,11 +71,25 @@
     color: #383D4C;
     padding: 16px 0;
     h3{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       font-weight: bold;
       line-height: 12px;
       font-size: 12px;
-      margin-left: 16px;
-      margin-bottom: 14px;
+      margin: 0 16px 0 16px;
+      &:after {
+        content: url('/assets/layers.svg');
+      }
+    }
+    >span{
+      display: block;
+      font-style: italic;
+      font-size: 11px;
+      line-height: 12px;
+      color: #BBBEC5;
+      margin-top: 3px;
+      margin: 0 16px 14px 16px;
     }
     ul{
       margin: 0 16px;

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, HostListener } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as positronMapstyle from '../../assets/mapstyle/positron/style.json';
 import * as darkmatterMapstyle from '../../assets/mapstyle/darkmatter/style.json';
@@ -14,6 +14,7 @@ declare const cartodb: any;
 export class MapComponent implements OnInit, AfterViewInit {
 
   @ViewChild('mapContainer') mapContainer;
+  interval: any;
   map: any;
   config = {
     year_built: {
@@ -71,6 +72,13 @@ export class MapComponent implements OnInit, AfterViewInit {
   currentYear = 2017;
   marker: any;
 
+  @HostListener('click')
+  onClick() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+
   constructor() { }
 
   ngOnInit() {}
@@ -94,6 +102,21 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     this.map.on('load', () => {
+
+    let bearing = 0;
+    this.interval = setInterval(() => {
+      this.map.flyTo({bearing: bearing});
+      bearing += 0.15;
+      if (bearing > 360) {
+        bearing = 0;
+      }
+    }, 200);
+    this.map.on('drag', () => {
+      clearInterval(this.interval);
+    });
+    this.map.on('zoom', () => {
+      clearInterval(this.interval);
+    });
 
     const el = document.createElement('div');
     el.className = 'marker';
