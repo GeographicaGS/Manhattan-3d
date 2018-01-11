@@ -5,9 +5,37 @@
   .map {
     width: 100%;
   }
-  app-selector {
+  .titles{
     position: absolute;
     top: 20px;
+    left: 20px;
+    z-index: 1;
+    display: none;
+  }
+  .selectors{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    display: flex;
+    app-selector{
+      max-width: 500px;
+      transition: max-width .25s linear, margin .25s linear, opacity .25s linear;
+      &.hide{
+        max-width: 0;
+        margin: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+      &+app-selector{
+        margin-left: 12px;
+      }
+    }
+  }
+  app-base-map-selector {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     left: 20px;
     z-index: 1;
   }

@@ -7,13 +7,15 @@ import { LOCALE_ID } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { SelectorComponent } from './selector/selector.component';
+import { BaseMapSelectorComponent } from './base-map-selector/base-map-selector.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    SelectorComponent
+    SelectorComponent,
+    BaseMapSelectorComponent
   ],
   imports: [
     BrowserModule,

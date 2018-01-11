@@ -7,10 +7,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class SelectorComponent implements OnInit {
 
-  selected: string;
+  @Input() selected: string;
   showList = false;
   @Output() onSelected = new EventEmitter<string>();
   private _values = [];
+  @Input() title: string;
   @Input() set values(values) {
     this._values = values;
     if (values.length > 0) {

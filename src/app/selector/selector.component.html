@@ -1,4 +1,4 @@
-<div class="title">Thematic layer</div>
+<div class="title">{{title}}</div>
 <div class="selected" (click)="toggleList()">{{selected}}</div>
 <ul [class.active]="showList">
   <li *ngFor="let v of _values" (click)="select(v)">{{v.title}}</li>

@@ -1,11 +1,35 @@
-<app-selector
-[values]="[
-  {'value':'year_built', 'title': config['year_built'].title},
-  {'value':'assesed_value', 'title':config['assesed_value'].title}
-]"
-(onSelected)="setLayerPaintProperties($event)"
-></app-selector>
+<div class="titles">
+  <h3>Year Built</h3>
+  <h4>The year construction of the building was completed.</h4>
+</div>
+
+<div class="selectors">
+  <app-selector
+  [values]="[
+    {'value':'year_built', 'title': config['year_built'].title},
+    {'value':'assesed_value', 'title':config['assesed_value'].title}
+  ]"
+  [title]="'Thematic layer'"
+  (onSelected)="thematicChanged($event)"
+  ></app-selector>
+
+  <app-selector
+  [class.hide]="currentConfig.property === 'yearbuilt'"
+  [values]="[
+    {'value':2017, 'title': 2017},
+    {'value':2016, 'title':2016},
+    {'value':2015, 'title':2015},
+    {'value':2014, 'title':2014}
+  ]"
+  [selected]="currentYear"
+  [title]="'Year'"
+  (onSelected)="yearChange($event)"
+  ></app-selector>
+</div>
+
 <div class="map" #mapContainer></div>
+
+<app-base-map-selector (onChange)="baseMapChanged($event)" ></app-base-map-selector>
 
 <div class="legend">
   <h3>{{currentConfig.title}}</h3>
