@@ -9,4 +9,25 @@
     bottom: 20px;
     left: 20px;
   }
+  .dataInfo{
+    position: fixed;
+    z-index: 1;
+    bottom: 20px;
+    left: 64px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
+    font-size: 12px;
+    padding: 0 12px;
+    a{
+      color: #0066CC;
+    }
+    span{
+      color: #383D4C;
+      margin-left: 6px;
+    }
+  }
 }
