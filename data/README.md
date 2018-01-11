@@ -2,7 +2,9 @@
 
 ## Buiding datasets
 
-Load datasets in data/geodata and run this function:
+1) Load datasets in data/geodata
+
+2) Load an execute this function:
 
 ```sql
 SELECT mnh3d_prepare_pluto_datasets(
@@ -10,7 +12,7 @@ SELECT mnh3d_prepare_pluto_datasets(
 );
 ```
 
-Generated Carto table must be public.
+3) Generated Carto table must be public.
 
 ## Data source
 
