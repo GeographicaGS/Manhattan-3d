@@ -26,7 +26,13 @@ export class MapComponent implements OnInit, AfterViewInit {
       darkmatter: {
         stops: [[1940, '#f26078'] , [1960, '#ef957c'] , [1980, '#ecca80'] , [2000, '#98d392'] , [2020, '#43dca3']]
       },
-      legend: ['< 1940', '1940 - 1960', '1960 - 1980', '1980 - 2000', '> 2000']
+      legend: [
+        {title: '< 1940', filter: ['>', 'yearbuilt', 1940], active: true},
+        {title: '1940 - 1960', filter: ['any', ['<', 'yearbuilt', 1940], ['>', 'yearbuilt', 1960]], active: true},
+        {title: '1960 - 1980', filter: ['any', ['<', 'yearbuilt', 1960], ['>', 'yearbuilt', 1980]], active: true},
+        {title: '1980 - 2000', filter: ['any', ['<', 'yearbuilt', 1980], ['>', 'yearbuilt', 2000]], active: true},
+        {title: '> 2000', filter: ['<', 'yearbuilt', 2000], active: true}
+      ]
     },
     assesed_value: {
       title: 'Assesed value',
@@ -50,7 +56,13 @@ export class MapComponent implements OnInit, AfterViewInit {
           [18209700, '#fcbd40']
         ]
       },
-      legend: ['< $50 per sq ft', '$50 - $100 per sq ft', '$100 - $150 per sq ft', '$150 - $200 per sq ft', '> $200 per sq ft']
+      legend: [
+        {title: '< $50 per sq ft', filter: ['>', 'assess_val_norm', 50], active: true},
+        {title: '$50 - $100 per sq ft', filter: ['any', ['<', 'assess_val_norm', 50], ['>', 'assess_val_norm', 100]], active: true},
+        {title: '$100 - $150 per sq ft', filter: ['any', ['<', 'assess_val_norm', 100], ['>', 'assess_val_norm', 150]], active: true},
+        {title: '$150 - $200 per sq ft', filter: ['any', ['<', 'assess_val_norm', 150], ['>', 'assess_val_norm', 200]], active: true},
+        {title: '> $200 per sq ft', filter: ['<', 'assess_val_norm', 200], active: true}
+      ]
     }
   };
 
@@ -144,6 +156,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         }
       });
       this.setLayerPaintProperties();
+      this.filterByLegend();
       this.map.on('mouseover', 'buildings', (e) => {
         this.map.getCanvas().style.cursor = 'pointer';
         this.marker.setLngLat(e.lngLat);
@@ -176,6 +189,10 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.currentYear = 2017;
       this.yearChange(this.currentYear);
     }
+
+    this.map.setFilter('buildings', null);
+    this.currentConfig.legend.filter(l => !l.active).map(l => l.active = true);
+
     this.currentConfig = this.config[selector];
     this.setLayerPaintProperties();
   }
@@ -185,6 +202,15 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map.removeLayer('buildings');
     this.map.removeSource('buildings_source');
     this.loadBuildingsLayer();
+  }
+
+  filterByLegend(elem = null) {
+    if (elem) {
+      elem.active = !elem.active;
+    }
+    const filterList: Array<any> = this.currentConfig.legend.filter(l => !l.active).map(l => l.filter);
+    filterList.unshift('all');
+    this.map.setFilter('buildings', filterList);
   }
 
 }
