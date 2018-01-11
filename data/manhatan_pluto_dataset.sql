@@ -4,7 +4,7 @@ CREATE TABLE manhattan_pluto_09_17 As
 (
   (
     SELECT
-        the_geom, numfloors * 4 as height,
+        the_geom, numfloors * 4 as  height, address,
         yearbuilt, assesstot / bldgarea as assess_val_norm,
         2017::integer as pub_date
     FROM mnmappluto2017
@@ -16,7 +16,7 @@ CREATE TABLE manhattan_pluto_09_17 As
   UNION ALL
   (
     SELECT
-        the_geom, numfloors * 4 as height,
+        the_geom, numfloors * 4 as  height, address,
         yearbuilt, assesstot / bldgarea as assess_val_norm,
         2016::integer as pub_date
     FROM mnmappluto2016
@@ -28,7 +28,7 @@ CREATE TABLE manhattan_pluto_09_17 As
   UNION ALL
   (
     SELECT
-        the_geom, numfloors * 4 as height,
+        the_geom, numfloors * 4 as  height, address,
         yearbuilt, assesstot / bldgarea as assess_val_norm,
         2015::integer as pub_date
     FROM mnmappluto2015
@@ -40,7 +40,7 @@ CREATE TABLE manhattan_pluto_09_17 As
   UNION ALL
   (
     SELECT
-        the_geom, numfloors * 4 as height,
+        the_geom, numfloors * 4 as  height, address,
         yearbuilt, assesstot / bldgarea as assess_val_norm,
         2014::integer as pub_date
     FROM mnmappluto2014
@@ -52,7 +52,7 @@ CREATE TABLE manhattan_pluto_09_17 As
   UNION ALL
   (
     SELECT
-        the_geom, numfloors * 4 as height,
+        the_geom, numfloors * 4 as  height, address,
         yearbuilt, assesstot / bldgarea as assess_val_norm,
         2013::integer as pub_date
     FROM mnmappluto2013
@@ -64,7 +64,7 @@ CREATE TABLE manhattan_pluto_09_17 As
   UNION ALL
   (
     SELECT
-        the_geom, numfloors * 4 as height,
+        the_geom, numfloors * 4 as  height, address,
         yearbuilt, assesstot / bldgarea as assess_val_norm,
         2012::integer as pub_date
     FROM mnmappluto2012
@@ -76,7 +76,7 @@ CREATE TABLE manhattan_pluto_09_17 As
   UNION ALL
   (
     SELECT
-        the_geom, numfloors * 4 as height,
+        the_geom, numfloors * 4 as  height, address,
         yearbuilt, assesstot / bldgarea as assess_val_norm,
         2011::integer as pub_date
     FROM mnmappluto2011
@@ -88,7 +88,7 @@ CREATE TABLE manhattan_pluto_09_17 As
   UNION ALL
   (
     SELECT
-        the_geom, numfloors * 4 as height,
+        the_geom, numfloors * 4 as  height, address,
         yearbuilt, assesstot / bldgarea as assess_val_norm,
         2010::integer as pub_date
     FROM mnmappluto2010
@@ -100,7 +100,7 @@ CREATE TABLE manhattan_pluto_09_17 As
   UNION ALL
   (
     SELECT
-        the_geom, numfloors * 4 as height,
+        the_geom, numfloors * 4 as  height, address,
         yearbuilt, assesstot / bldgarea as assess_val_norm,
         2009::integer as pub_date
     FROM mnmappluto2009
@@ -113,4 +113,5 @@ CREATE TABLE manhattan_pluto_09_17 As
 
 SELECT CDB_CartodbfyTable('cayetano', 'manhattan_pluto_09_17');
 
+DROP INDEX mn_pluto14_17_yearb_idx;
 CREATE INDEX mn_pluto14_17_yearb_idx ON manhattan_pluto_09_17(yearbuilt);
