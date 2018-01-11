@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="39px" viewBox="0 0 12 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>layout/flecha</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-72.000000, -508.000000)">
+        <g id="Group-5" transform="translate(56.000000, 480.000000)">
+            <g id="layout/flecha" transform="translate(16.000000, 29.000000)">
+                <g id="Group-7">
+                    <path d="M11.0474,36.2404 C4.7644,32.8204 0.5004,26.1594 0.5004,18.5024 C0.5004,10.6014 5.0404,3.7604 11.6534,0.4474" id="Stroke-1" stroke="#DDDEE2"></path>
+                    <path d="M8.6149,30.8977 C8.4429,30.9867 8.3769,31.1977 8.4659,31.3697 L10.9289,36.1247 L5.5789,36.3457 C5.3849,36.3537 5.2339,36.5167 5.2429,36.7097 C5.2509,36.9027 5.4159,37.0527 5.6069,37.0457 L11.5069,36.8017 C11.6259,36.7957 11.7349,36.7307 11.7949,36.6277 C11.8549,36.5237 11.8579,36.3967 11.8029,36.2907 L9.0869,31.0477 C9.0549,30.9867 9.0079,30.9387 8.9519,30.9057 C8.8519,30.8477 8.7249,30.8407 8.6149,30.8977" id="Fill-3" fill="#DDDEE2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

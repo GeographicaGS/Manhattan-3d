@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/primary/dia</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/primary/dia" stroke="#0066CC">
+            <g id="sol">
+                <path d="M12,18.222 C8.508,18.222 5.66666667,15.3806667 5.66666667,11.8886667 C5.66666667,8.39666667 8.508,5.55533333 12,5.55533333 C15.492,5.55533333 18.3333333,8.39666667 18.3333333,11.8886667 C18.3333333,15.3806667 15.492,18.222 12,18.222" id="Fill-1"></path>
+                <path d="M11.6666667,4.66666667 L11.6666667,0" id="Stroke-5"></path>
+                <path d="M6.6574,7.01773333 L3.3574,3.71773333" id="Stroke-7"></path>
+                <path d="M4.66666667,12.3333333 L0,12.3333333" id="Stroke-9"></path>
+                <path d="M7.1288,17.3886 L3.8288,20.6886" id="Stroke-11"></path>
+                <path d="M12.3333333,19.3333333 L12.3333333,24" id="Stroke-13"></path>
+                <path d="M17.4997333,16.9172 L20.7997333,20.2172" id="Stroke-15"></path>
+                <path d="M19.3333333,11.6666667 L24,11.6666667" id="Stroke-17"></path>
+                <path d="M17.0283333,6.54633333 L20.3283333,3.24633333" id="Stroke-19"></path>
+            </g>
+        </g>
+    </g>
+</svg>

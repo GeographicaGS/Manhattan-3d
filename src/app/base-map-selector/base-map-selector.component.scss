@@ -1,0 +1,57 @@
+:host{
+  >div{
+    height: 92px;
+    width: 92px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
+    border-radius: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    transition: transform .25s linear;
+    &.invert{
+      // transform: rotate(180deg)!important;
+      .sun{
+        background-image: url('/assets/dia-disabled.svg');
+      }
+      .moon{
+        background-image: url('/assets/noche.svg');
+      }
+    }
+    .sun, .moon{
+      width: 24px;
+      height: 24px;
+    }
+    .sun{
+      background-image: url('/assets/dia.svg');
+      margin-top: 10px;
+    }
+    .point {
+      width: 6px;
+      height: 6px;
+      background-color: #BBBEC5;
+      border-radius: 100%;
+    }
+    .moon{
+      background-image: url('/assets/noche-disabled.svg');
+      transform: rotate(180deg);
+      margin-bottom: 10px;
+    }
+    .arrow {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      &.left{
+        left: 16px;
+        transform: translateY(-50%);
+      }
+      &.right{
+        right: 16px;
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+}
