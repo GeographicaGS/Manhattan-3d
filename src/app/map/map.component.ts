@@ -56,6 +56,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   currentBaseMap = 'darkmatter';
   currentConfig = this.config['year_built'];
   currentYear = 2017;
+  marker: any;
 
   constructor() { }
 
@@ -80,6 +81,10 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     this.map.on('load', () => {
+
+    const el = document.createElement('div');
+    el.className = 'marker';
+    this.marker = new mapboxgl.Marker(el).setLngLat([0, 0]).addTo(this.map);
 
     this.loadBuildingsLayer();
 
@@ -108,7 +113,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     const layerData = {
       user_name: 'cayetano',
       sublayers: [{
-        sql: `SELECT the_geom_webmercator,cartodb_id,height,yearbuilt, assess_val_norm
+        sql: `SELECT the_geom_webmercator,cartodb_id,height,yearbuilt, assess_val_norm, address
         FROM cayetano.manhattan_pluto_09_17 WHERE pub_date=${this.currentYear}`,
         cartocss: '{}'
       }],
@@ -138,9 +143,20 @@ export class MapComponent implements OnInit, AfterViewInit {
         }
       });
       this.setLayerPaintProperties();
-      // this.map.on('mouseover', 'buildings', (e) => {
-      //   console.log('ENTRO');
-      // });
+      this.map.on('mouseover', 'buildings', (e) => {
+        this.marker.setLngLat(e.lngLat);
+        const property = e.features[0].properties[this.currentConfig.property];
+        const color = this.currentConfig[this.currentBaseMap].stops.find(s => s[0] >= property)[1];
+        document.getElementsByClassName('marker')[0].innerHTML = `
+          <div>
+            <h3>${e.features[0].properties.address}</h3>
+            <h4 style="color:${color};">${property}</h4>
+          </div>
+        `;
+      });
+      this.map.on('mouseleave', 'buildings', (e) => {
+        this.marker.setLngLat([0, 0]);
+      });
     });
   }
 

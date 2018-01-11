@@ -14,4 +14,27 @@ body {
     transform: translateY(-50%);
     right: 10px;
   }
+
+  .marker{
+    background-color: transparent;
+    pointer-events: none;
+    >div{
+      border-radius: 4px;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
+      padding: 6px;
+      background-color: #383D4C;
+      margin-bottom: 50px;
+    }
+    h3, h4{
+      font-size: 11px;
+      font-weight: bold;
+      line-height: 11px;
+    }
+    h3{
+      color: #FFFFFF;
+    }
+    h4{
+      margin-top: 2px;
+    }
+  }
 }
