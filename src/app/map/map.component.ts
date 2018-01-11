@@ -145,6 +145,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       });
       this.setLayerPaintProperties();
       this.map.on('mouseover', 'buildings', (e) => {
+        this.map.getCanvas().style.cursor = 'pointer';
         this.marker.setLngLat(e.lngLat);
         const property = e.features[0].properties[this.currentConfig.property];
         const color = this.currentConfig[this.currentBaseMap].stops.find(s => s[0] >= property)[1];
@@ -156,6 +157,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         `;
       });
       this.map.on('mouseleave', 'buildings', (e) => {
+        this.map.getCanvas().style.cursor = '';
         this.marker.setLngLat([0, 0]);
       });
     });
