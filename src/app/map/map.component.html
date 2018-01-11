@@ -38,7 +38,7 @@
 
 <div class="legend">
   <h3>{{currentConfig.title}}</h3>
-  <span>Clic layer to filter</span>
+  <span>Click layer to filter</span>
   <ul>
     <li *ngFor="let c of currentConfig.legend; let i = index" (click)="filterByLegend(c)" [class.inactive]="!currentConfig.legend[i].active">
       <div [ngStyle]="{'background-color': currentConfig[currentBaseMap].stops[i][1]}"></div>
