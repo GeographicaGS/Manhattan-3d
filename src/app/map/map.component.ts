@@ -140,9 +140,33 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   baseMapChanged(value) {
-    this.map.style._loaded = false;
-    this.currentBaseMap = value === 'moon' ? 'darkmatter' : 'positron';
-    this.setMapStyle(value === 'moon' ? darkmatterMapstyle : positronMapstyle);
+    const layers = this.map.getStyle().layers;
+    const mapstyle = value === 'moon' ? darkmatterMapstyle : positronMapstyle;
+    for (const l of layers) {
+      const newLayer = mapstyle['layers'].find(_layer => _layer.id === l.id );
+      if (newLayer && l.id !== 'buildings') {
+        l.type = newLayer.type;
+        for (const key in l.paint) {
+          if (l.paint[key]) {
+            const type = Object.prototype.toString.call(this.map.getPaintProperty(l.id, key));
+            if (type === '[object String]') {
+              this.map.setPaintProperty(l.id, key, 'transparent');
+            }else if (type === '[object Boolean]') {
+              this.map.setPaintProperty(l.id, key, false);
+            }else if (type === '[object Object]') {
+              this.map.setPaintProperty(l.id, key, null);
+            }else if (type !== '[object Array]') {
+              this.map.setPaintProperty(l.id, key, 0);
+            }
+          }
+        }
+        for (const key in newLayer.paint) {
+          if (newLayer.paint[key]) {
+            this.map.setPaintProperty(l.id, key, newLayer.paint[key]);
+          }
+        }
+      }
+    }
   }
 
   loadBuildingsLayer() {

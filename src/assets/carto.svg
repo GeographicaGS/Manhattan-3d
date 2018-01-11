@@ -1,0 +1,5 @@
+<svg class="arrow" version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    [ngStyle]="{'height.px': geoHeight, 'width.px': geoHeight}" xml:space="preserve">
+    <polyline stroke-miterlimit="10" points="24.146,17.854 17.5,11.207 10.854,17.854 "/>
+    <line stroke-miterlimit="10" x1="17.5" y1="11.207" x2="17.5" y2="25.5"/>
+  </svg>
