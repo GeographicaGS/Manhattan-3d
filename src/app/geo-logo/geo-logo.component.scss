@@ -1,0 +1,59 @@
+:host{
+  display: flex;
+  align-items: center;
+  .carto{
+    align-items: center;
+    margin-right: 18px;
+    display: none;
+  }
+  .geo{
+    width: 24px;
+    height: 24px;
+    border-radius: 2px 0 0 0;
+    background-color: #15B750;
+    &:hover{
+      .big{
+        width: 52px;
+        height: 68px;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .small{
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      .arrow {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .big,.small,.arrow{
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .small{
+      width: 100%;
+      height: 100%;
+    }
+    .big{
+      position: absolute;
+      width: 0;
+      height: 0;
+      background-color: #FFF;
+      top: -63px;
+      left: 19px;
+      opacity: 0;
+      transform: translateY(5px);
+      box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.15);
+    }
+    .arrow {
+      position: absolute;
+      top: 0;
+      right: 0;
+      stroke: #FFF;
+      stroke-width: 2;
+      fill: none;
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+  }
+}

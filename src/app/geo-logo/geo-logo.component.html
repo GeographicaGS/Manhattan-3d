@@ -1,0 +1,15 @@
+<a class="carto" [ngStyle]="{'display': showCarto ? 'flex':''}" href="https://carto.com/" target="_blank">
+  <img *ngIf="!whiteCarto" src="/assets/latitude/carto_positive.svg" alt="carto">
+  <img *ngIf="whiteCarto" src="/assets/latitude/carto_white.svg" alt="carto">
+</a>
+<div class="geo" [ngStyle]="{'height.px': geoHeight, 'width.px': geoHeight}">
+  <a href="https://geographica.gs" target="_blank">
+    <img class="small" src="/assets/latitude/GEOGRAPHICA_ALT-NEG-24.svg" alt="geographica">
+    <svg class="arrow" version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        [ngStyle]="{'height.px': geoHeight, 'width.px': geoHeight}" xml:space="preserve">
+        <polyline stroke-miterlimit="10" points="24.146,17.854 17.5,11.207 10.854,17.854 "/>
+        <line stroke-miterlimit="10" x1="17.5" y1="11.207" x2="17.5" y2="25.5"/>
+      </svg>
+  </a>
+  <img class="big" src="/assets/latitude/GEOGRAPHICA_COM_POS-52x68.svg" alt="geographica">
+</div>

@@ -10,7 +10,27 @@
     top: 20px;
     left: 20px;
     z-index: 1;
-    display: none;
+    display: inline-flex;
+    flex-direction: column;
+    h3, h4 {
+      background-color: #383D4C;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
+      border-radius: 4px;
+      color: #FFFFFF;
+      display: inline-table;
+    }
+    h3{
+      font-style: italic;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 5px 12px;
+    }
+    h4{
+      font-size: 12px;
+      font-weight: normal;
+      margin-top: 3px;
+      padding: 6px 12px;
+    }
   }
   .selectors{
     position: absolute;

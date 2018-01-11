@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { SelectorComponent } from './selector/selector.component';
 import { BaseMapSelectorComponent } from './base-map-selector/base-map-selector.component';
+import { GeoLogoComponent } from './geo-logo/geo-logo.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { BaseMapSelectorComponent } from './base-map-selector/base-map-selector.
     AppComponent,
     MapComponent,
     SelectorComponent,
-    BaseMapSelectorComponent
+    BaseMapSelectorComponent,
+    GeoLogoComponent
   ],
   imports: [
     BrowserModule,

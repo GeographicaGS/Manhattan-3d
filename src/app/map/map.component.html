@@ -1,6 +1,6 @@
 <div class="titles">
-  <h3>Year Built</h3>
-  <h4>The year construction of the building was completed.</h4>
+  <h3>{{currentConfig.title}}</h3>
+  <h4>{{currentConfig.subtitle}}</h4>
 </div>
 
 <div class="selectors">
@@ -16,10 +16,15 @@
   <app-selector
   [class.hide]="currentConfig.property === 'yearbuilt'"
   [values]="[
-    {'value':2017, 'title': 2017},
+    {'value':2017, 'title':2017},
     {'value':2016, 'title':2016},
     {'value':2015, 'title':2015},
-    {'value':2014, 'title':2014}
+    {'value':2014, 'title':2014},
+    {'value':2013, 'title':2013},
+    {'value':2012, 'title':2012},
+    {'value':2011, 'title':2011},
+    {'value':2010, 'title':2010},
+    {'value':2009, 'title':2009}
   ]"
   [selected]="currentYear"
   [title]="'Year'"

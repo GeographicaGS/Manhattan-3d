@@ -7,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class BaseMapSelectorComponent implements OnInit {
 
-  invert = false;
+  invert = true;
   rotation = 0;
 
   @Output() onChange = new EventEmitter<string>();

@@ -3,4 +3,10 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  app-geo-logo{
+    position: fixed;
+    z-index: 1;
+    bottom: 20px;
+    left: 20px;
+  }
 }

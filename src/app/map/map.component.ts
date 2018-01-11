@@ -17,7 +17,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   config = {
     year_built: {
       title: 'Year built',
-      subtitle: '',
+      subtitle: 'The year construction of the building was completed.',
       property: 'yearbuilt',
       positron: {
         stops: [[1940, '#EA7C81'] , [1960, '#F4B0A4'] , [1980, '#FFE4C7'] , [2000, '#B3CCB2'] , [2020, '#B3CCB2']]
@@ -28,7 +28,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     },
     assesed_value: {
       title: 'Assesed value',
-      subtitle: '',
+      subtitle: 'Tentative assessed total value for Fiscal Year per total building area.',
       property: 'assess_val_norm',
       positron: {
         stops: [
@@ -51,7 +51,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
   };
 
-  currentBaseMap = 'positron';
+  currentBaseMap = 'darkmatter';
   currentConfig = this.config['year_built'];
   currentYear = 2017;
 
@@ -74,7 +74,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         zoom: 14,
         pitch: 60
     });
-    this.setMapStyle(positronMapstyle);
+    this.setMapStyle(darkmatterMapstyle);
     this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     this.map.on('load', () => {
@@ -107,7 +107,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       user_name: 'cayetano',
       sublayers: [{
         sql: `SELECT the_geom_webmercator,cartodb_id,height,yearbuilt, assess_val_norm
-        FROM cayetano.manhatan_pluto_14_17 WHERE pub_date=${this.currentYear}`,
+        FROM cayetano.manhattan_pluto_09_17 WHERE pub_date=${this.currentYear}`,
         cartocss: '{}'
       }],
       maps_api_template: 'https://cayetano.carto.com'
