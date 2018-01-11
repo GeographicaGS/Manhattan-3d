@@ -24,7 +24,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       },
       darkmatter: {
         stops: [[1940, '#f26078'] , [1960, '#ef957c'] , [1980, '#ecca80'] , [2000, '#98d392'] , [2020, '#43dca3']]
-      }
+      },
+      legend: ['< 1940', '1940 - 1960', '1960 - 1980', '1980 - 2000', '> 2000']
     },
     assesed_value: {
       title: 'Assesed value',
@@ -47,7 +48,8 @@ export class MapComponent implements OnInit, AfterViewInit {
           [200, '#c0c46f'],
           [18209700, '#fcbd40']
         ]
-      }
+      },
+      legend: ['< $50 per sq ft', '$50 - $100 per sq ft', '$100 - $150 per sq ft', '$150 - $200 per sq ft', '> $200 per sq ft']
     }
   };
 

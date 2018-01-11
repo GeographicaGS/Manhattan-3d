@@ -39,9 +39,19 @@
 <div class="legend">
   <h3>{{currentConfig.title}}</h3>
   <ul>
+    <li *ngFor="let c of currentConfig.legend; let i = index">
+      <div [ngStyle]="{'background-color': currentConfig[currentBaseMap].stops[i][1]}"></div>
+      {{c}}
+    </li>
+  </ul>
+</div>
+
+<!-- <div class="legend">
+  <h3>{{currentConfig.title}}</h3>
+  <ul>
     <li *ngFor="let c of currentConfig.stops">
       <div [ngStyle]="{'background-color': c[1]}"></div>
       {{c[0] | number}}
     </li>
   </ul>
-</div>
+</div> -->
