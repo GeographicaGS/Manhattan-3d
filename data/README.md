@@ -4,7 +4,7 @@
 
 1) Load datasets in data/geodata to Carto.
 
-2) Load an execute this function in Carto:
+2) Load an execute this function in Carto to process and build datasets:
 
 ```sql
 SELECT mnh3d_prepare_pluto_datasets(
