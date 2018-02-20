@@ -29,7 +29,7 @@ pipeline {
       when {
           anyOf {
               branch 'master';
-            //  branch 'staging';
+              branch 'etisalat';
           }
       }
       steps {
@@ -37,9 +37,9 @@ pipeline {
           if (env.BRANCH_NAME == 'master') {
             DEPLOY_TO = "prod"
           }
-          //else if (env.BRANCH_NAME == 'staging') {
-          //  DEPLOY_TO = "staging"
-          //}
+          else if (env.BRANCH_NAME == 'etisalat') {
+            DEPLOY_TO = "etisalat"
+          }
         }
         sh "docker run -i --rm -v \$(pwd)/dist:/usr/src/app/dist geographica/manhattan_3d ng build --environment=prod -op dist/dist"
         sh "cp deploy/s3_website.${DEPLOY_TO}.yml s3_website.yml"

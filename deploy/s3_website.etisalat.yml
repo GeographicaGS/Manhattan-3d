@@ -1,0 +1,39 @@
+s3_id: <%= ENV['S3_WEBSITE_ID'] %>
+s3_secret: <%= ENV['S3_WEBSITE_SECRET'] %>
+s3_bucket: etisalat.geographica.io
+cloudfront_distribution_id: EITAZS7KUF2HB
+
+site: dist/dist
+s3_endpoint: eu-west-1
+
+max_age:
+  "assets/*": 6000
+  "*": 300
+
+gzip:
+  - .html
+  - .css
+  - .md
+  - .js
+
+exclude_from_upload:
+  - .DS_Store
+  - .htaccess
+  - .yml
+
+cloudfront_distribution_config:
+  default_cache_behavior:
+    min_ttl: <%= 60 * 60 * 24 %>
+  aliases:
+    quantity: 1
+    items:
+      - etisalat.geographica.io
+
+routing_rules:
+  - condition:
+      http_error_code_returned_equals: "404"
+    redirect:
+      protocol: https
+      host_name: etisalat.geographica.io
+      replace_key_prefix_with: "#"
+      http_redirect_code: "301"
