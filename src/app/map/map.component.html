@@ -1,19 +1,19 @@
 <div class="titles">
   <h3>{{currentConfig.title}}</h3>
-  <h4>{{currentConfig.subtitle}}</h4>
+  <!-- <h4>{{currentConfig.subtitle}}</h4> -->
 </div>
 
 <div class="selectors">
   <app-selector
   [values]="[
-    {'value':'year_built', 'title': config['year_built'].title},
-    {'value':'assesed_value', 'title':config['assesed_value'].title}
+    {'value':'dubai', 'title': config['dubai'].title},
+    {'value':'abudabi', 'title':config['abudabi'].title}
   ]"
-  [title]="'Thematic layer'"
+  [title]="'Select city'"
   (onSelected)="thematicChanged($event)"
   ></app-selector>
 
-  <app-selector
+  <!-- <app-selector
   [class.hide]="currentConfig.property === 'yearbuilt'"
   [values]="[
     {'value':2017, 'title':2017},
@@ -29,7 +29,7 @@
   [selected]="currentYear"
   [title]="'Year'"
   (onSelected)="yearChange($event)"
-  ></app-selector>
+  ></app-selector> -->
 </div>
 
 <div class="map" #mapContainer></div>
@@ -37,10 +37,13 @@
 <app-base-map-selector (onChange)="baseMapChanged($event)" ></app-base-map-selector>
 
 <div class="legend">
-  <h3>{{currentConfig.title}}</h3>
-  <span>Click layer to filter</span>
+  <!-- <h3>{{currentConfig.title}}</h3> -->
+  <h3>Building height</h3>
+  <!-- <span>Click layer to filter</span> -->
+  <span></span>
   <ul>
-    <li *ngFor="let c of currentConfig.legend; let i = index" (click)="filterByLegend(c)" [class.inactive]="!currentConfig.legend[i].active">
+    <!-- <li *ngFor="let c of currentConfig.legend; let i = index" (click)="filterByLegend(c)" [class.inactive]="!currentConfig.legend[i].active"> -->
+    <li *ngFor="let c of currentConfig.legend; let i = index" [class.inactive]="!currentConfig.legend[i].active">
       <div [ngStyle]="{'background-color': currentConfig[currentBaseMap].stops[i][1]}"></div>
       {{c.title}}
     </li>

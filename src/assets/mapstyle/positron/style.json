@@ -270,18 +270,6 @@
             }
         },
         {
-            "id": "building",
-            "type": "fill",
-            "source": "openmaptiles",
-            "source-layer": "building",
-            "minzoom": 12,
-            "paint": {
-                "fill-color": "rgb(234, 234, 229)",
-                "fill-outline-color": "rgb(219, 219, 218)",
-                "fill-antialias": true
-            }
-        },
-        {
             "id": "tunnel_motorway_casing",
             "type": "line",
             "metadata": {
@@ -2191,6 +2179,30 @@
                         ]
                     ]
                 }
+            }
+        },
+        {
+            "id": "building",
+            "type": "fill-extrusion",
+            "source": "openmaptiles",
+            "source-layer": "building",
+
+            "paint": {
+              "fill-extrusion-height": {
+                "property": "render_height",
+                "type": "identity"
+              },
+              "fill-extrusion-opacity": 0.85,
+              "fill-extrusion-color": [
+                  "interpolate",
+                  ["linear"],
+                  ["get", "render_height"],
+                  0, "#EA7C81",
+                  150, "#F4B0A4",
+                  300, "#FFE4C7",
+                  450, "#B3CCB2",
+                  600, "#B3CCB2"
+              ]
             }
         }
     ],

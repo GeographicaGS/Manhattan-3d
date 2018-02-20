@@ -17,8 +17,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   interval: any;
   map: any;
   config = {
-    year_built: {
-      title: 'Year built',
+    dubai: {
+      coords: [55.1849337, 25.1087956],
+      zoom: 14.1,
+      title: 'Dubái',
       subtitle: 'The year construction of the building was completed.',
       property: 'yearbuilt',
       positron: {
@@ -35,40 +37,37 @@ export class MapComponent implements OnInit, AfterViewInit {
         {title: '> 2000', filter: ['<', 'yearbuilt', 2000], active: true}
       ]
     },
-    assesed_value: {
-      title: 'Assesed value',
+    abudabi: {
+      coords: [54.3726291, 24.4592013],
+      zoom: 14.1,
+      title: 'Abu Dabi',
       subtitle: 'Tentative assessed total value for Fiscal Year per total building area.',
       property: 'assess_val_norm',
       positron: {
-        stops: [
-          [50, '#6FB6C7'],
-          [100, '#84C4B3'],
-          [150, '#AFDCAE'],
-          [200, '#ECDE80'],
-          [18209700, '#F2C56E']
-        ]
+        stops: [[1940, '#EA7C81'] , [1960, '#F4B0A4'] , [1980, '#FFE4C7'] , [2000, '#B3CCB2'] , [2020, '#B3CCB2']]
       },
       darkmatter: {
-        stops: [
-          [50, '#3a92aa'],
-          [100, '#60ac98'],
-          [150, '#86c685'],
-          [200, '#c0c46f'],
-          [18209700, '#fcbd40']
-        ]
+        stops: [[1940, '#f26078'] , [1960, '#ef957c'] , [1980, '#ecca80'] , [2000, '#98d392'] , [2020, '#43dca3']]
       },
       legend: [
-        {title: '< $50 per sq ft', filter: ['>', 'assess_val_norm', 50], active: true},
-        {title: '$50 - $100 per sq ft', filter: ['any', ['<', 'assess_val_norm', 50], ['>', 'assess_val_norm', 100]], active: true},
-        {title: '$100 - $150 per sq ft', filter: ['any', ['<', 'assess_val_norm', 100], ['>', 'assess_val_norm', 150]], active: true},
-        {title: '$150 - $200 per sq ft', filter: ['any', ['<', 'assess_val_norm', 150], ['>', 'assess_val_norm', 200]], active: true},
-        {title: '> $200 per sq ft', filter: ['<', 'assess_val_norm', 200], active: true}
+        {title: '< 1940', filter: ['>', 'yearbuilt', 1940], active: true},
+        {title: '1940 - 1960', filter: ['any', ['<', 'yearbuilt', 1940], ['>', 'yearbuilt', 1960]], active: true},
+        {title: '1960 - 1980', filter: ['any', ['<', 'yearbuilt', 1960], ['>', 'yearbuilt', 1980]], active: true},
+        {title: '1980 - 2000', filter: ['any', ['<', 'yearbuilt', 1980], ['>', 'yearbuilt', 2000]], active: true},
+        {title: '> 2000', filter: ['<', 'yearbuilt', 2000], active: true}
       ]
+      // legend: [
+      //   {title: '< $50 per sq ft', filter: ['>', 'assess_val_norm', 50], active: true},
+      //   {title: '$50 - $100 per sq ft', filter: ['any', ['<', 'assess_val_norm', 50], ['>', 'assess_val_norm', 100]], active: true},
+      //   {title: '$100 - $150 per sq ft', filter: ['any', ['<', 'assess_val_norm', 100], ['>', 'assess_val_norm', 150]], active: true},
+      //   {title: '$150 - $200 per sq ft', filter: ['any', ['<', 'assess_val_norm', 150], ['>', 'assess_val_norm', 200]], active: true},
+      //   {title: '> $200 per sq ft', filter: ['<', 'assess_val_norm', 200], active: true}
+      // ]
     }
   };
 
   currentBaseMap = 'darkmatter';
-  currentConfig = this.config['year_built'];
+  currentConfig = this.config['dubai'];
   currentYear = 2017;
   marker: any;
 
@@ -94,40 +93,61 @@ export class MapComponent implements OnInit, AfterViewInit {
     mapboxgl.accessToken = 'pk.eyJ1IjoicGFkYXdhbm5uIiwiYSI6ImNqM2Q0aXQ1YjAwMWYyd3FvZWFtNWhzcWkifQ.RoQyI1QgQHNeztjjCnNIwg';
     this.map = new mapboxgl.Map({
         container: this.mapContainer.nativeElement,
-        center: [-74.000271, 40.7191704],
-        zoom: 14,
-        pitch: 60
+        center: this.config.dubai.coords,
+        zoom: this.config.dubai.zoom,
+        pitch: 60,
+        // style: 'mapbox://styles/mapbox/basic-v9'
     });
     this.setMapStyle(darkmatterMapstyle);
     this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
+    // this.map.setMinZoom(this.config.dubai.zoom);
+
     this.map.on('load', () => {
-
-    let bearing = 0;
-    this.interval = setInterval(() => {
-      this.map.flyTo({bearing: bearing});
-      bearing += 0.15;
-      if (bearing > 360) {
-        bearing = 0;
-      }
-    }, 200);
-    this.map.on('drag', () => {
-      clearInterval(this.interval);
-    });
-    this.map.on('zoom', () => {
-      clearInterval(this.interval);
-    });
-
-    const el = document.createElement('div');
-    el.className = 'marker';
-    this.marker = new mapboxgl.Marker(el).setLngLat([0, 0]).addTo(this.map);
-
-    this.loadBuildingsLayer();
-
-    this.map.on('style.load', () => {
-      this.loadBuildingsLayer();
-    });
-
+      //
+      // let count = 0;
+      // setInterval(() => {
+      //   count = count + 1;
+      //   if (count > 360) {
+      //     count = 0;
+      //   }
+      //   this.map.setLight({
+      //     'anchor': 'viewport',
+      //     'color': 'white',
+      //     'intensity': 1.0,
+      //     'position': [
+      //       1.15,
+      //       count,
+      //       30
+      //     ]
+      //   });
+      // }, 50);
+    //
+    // let bearing = 0;
+    // this.interval = setInterval(() => {
+    //   this.map.flyTo({bearing: bearing});
+    //   bearing += 0.15;
+    //   if (bearing > 360) {
+    //     bearing = 0;
+    //   }
+    // }, 200);
+    // this.map.on('drag', () => {
+    //   clearInterval(this.interval);
+    // });
+    // this.map.on('zoom', () => {
+    //   clearInterval(this.interval);
+    // });
+    //
+    // const el = document.createElement('div');
+    // el.className = 'marker';
+    // this.marker = new mapboxgl.Marker(el).setLngLat([0, 0]).addTo(this.map);
+    //
+    // // this.loadBuildingsLayer();
+    //
+    // this.map.on('style.load', () => {
+    //   this.loadBuildingsLayer();
+    // });
+    //
     });
 
   }
@@ -232,16 +252,24 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   thematicChanged(selector) {
-    if (this.currentYear !== 2017) {
-      this.currentYear = 2017;
-      this.yearChange(this.currentYear);
-    }
-
-    this.map.setFilter('buildings', null);
-    this.currentConfig.legend.filter(l => !l.active).map(l => l.active = true);
-
+    // this.map.setMinZoom(0);
+    this.map.flyTo({
+      center: this.config[selector].coords,
+      zoom: this.config[selector].zoom,
+    });
+    // setTimeout(() => {
+    //   this.map.setMinZoom(this.config[selector].zoom);
+    // }, 5000);
+    // if (this.currentYear !== 2017) {
+    //   this.currentYear = 2017;
+    //   this.yearChange(this.currentYear);
+    // }
+    //
+    // this.map.setFilter('buildings', null);
+    // this.currentConfig.legend.filter(l => !l.active).map(l => l.active = true);
+    //
     this.currentConfig = this.config[selector];
-    this.setLayerPaintProperties();
+    // this.setLayerPaintProperties();
   }
 
   yearChange(year) {

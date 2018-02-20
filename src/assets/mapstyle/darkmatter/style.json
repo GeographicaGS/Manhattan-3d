@@ -273,23 +273,6 @@
             }
         },
         {
-            "id": "building",
-            "type": "fill",
-            "source": "openmaptiles",
-            "source-layer": "building",
-            "minzoom": 12,
-            "filter": [
-                "==",
-                "$type",
-                "Polygon"
-            ],
-            "paint": {
-                "fill-color": "rgb(10,10,10)",
-                "fill-outline-color": "rgb(27 ,27 ,29)",
-                "fill-antialias": true
-            }
-        },
-        {
             "id": "aeroway-taxiway",
             "type": "line",
             "metadata": {
@@ -1820,6 +1803,30 @@
                 "text-halo-width": 1.4,
                 "text-halo-color": "rgba(0,0,0,0.7)",
                 "text-color": "rgb(101,101,101)"
+            }
+        },
+        {
+            "id": "building",
+            "type": "fill-extrusion",
+            "source": "openmaptiles",
+            "source-layer": "building",
+
+            "paint": {
+              "fill-extrusion-height": {
+                "property": "render_height",
+                "type": "identity"
+              },
+              "fill-extrusion-opacity": 0.85,
+              "fill-extrusion-color": [
+                  "interpolate",
+                  ["linear"],
+                  ["get", "render_height"],
+                  0, "#f26078",
+                  150, "#ef957c",
+                  300, "#ecca80",
+                  450, "#98d392",
+                  600, "#43dca3"
+              ]
             }
         }
     ],
